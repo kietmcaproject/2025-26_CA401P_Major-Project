@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-background text-textMain font-sans antialiased overflow-x-hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 10%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* Custom Components */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+}
+
+.btn-primary {
+  background-color: #6366F1;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(99,102,241,0.25);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: #4F46E5;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(99,102,241,0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: #10B981;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(16,185,129,0.25);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(16,185,129,0.35);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.input-field {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #F1F5F9;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-field::placeholder {
+  color: #94A3B8;
+}
+
+.input-field:focus {
+  border-color: rgba(99,102,241,0.7);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+* { scroll-behavior: smooth; }
+
+/* ── Razorpay modal fix ─────────────────────────────────────────────────────
+   The app's global text color (#F1F5F9 – near-white) leaks into the Razorpay
+   checkout overlay and makes typed text invisible on light input backgrounds
+   (most visible on the UPI ID field). Force all text/inputs inside the
+   Razorpay container back to dark so they remain readable.
+   ────────────────────────────────────────────────────────────────────────── */
+.razorpay-container *,
+.razorpay-backdrop *,
+#razorpay-container *,
+#razorpay-backdrop * {
+  color: #111 !important;
+  caret-color: #111 !important;
+}
+
+.razorpay-container input,
+.razorpay-container textarea,
+.razorpay-container select,
+#razorpay-container input,
+#razorpay-container textarea,
+#razorpay-container select {
+  color: #111 !important;
+  background-color: #fff !important;
+  caret-color: #111 !important;
+}
+
+.razorpay-container input::placeholder,
+#razorpay-container input::placeholder {
+  color: #999 !important;
+}
